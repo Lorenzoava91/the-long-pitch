@@ -1,0 +1,14 @@
+---
+import "../styles/global.css";
+const { title = "The Long Pitch", description = "Storie di montagna, persone e luoghi." } = Astro.props;
+---
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+  </head>
+  <body><slot /></body>
+</html>

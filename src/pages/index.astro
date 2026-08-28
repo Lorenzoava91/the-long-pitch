@@ -1,0 +1,32 @@
+---
+import Base from "../layouts/Base.astro";
+import Header from "../components/Header.astro";
+
+const modules = import.meta.glob("../content/stories/*.md", { eager: true });
+const stories = Object.entries(modules)
+  .map(([path, mod]: [string, any]) => ({ ...mod.frontmatter, slug: path.split("/").pop()!.replace(/\.md$/, "") }))
+  .filter((story) => story.published)
+  .sort((a, b) => new Date(b.date).valueOf() - new Date(a.date).valueOf());
+const featured = stories[0];
+const slugify = (value: string) => value.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+---
+<Base>
+  <Header />
+  {featured ? <main>
+    <a class="hero" href={`/stories/${featured.slug}/`}>
+      <img src={featured.cover} alt="" />
+      <div class="hero-shade"></div>
+      <div class="hero-copy"><p>{featured.category} · {featured.location}</p><h1>{featured.title}</h1><span>Leggi la storia →</span></div>
+    </a>
+    <section class="intro"><p>Storie di montagna</p><h2>Roccia, neve, persone<br />e luoghi incontrati lungo la strada.</h2></section>
+    <section class="stories">
+      <div class="section-head"><span>Ultime storie</span><p>{stories.length.toString().padStart(2, "0")}</p></div>
+      <div class="story-grid">
+        {stories.map((story, index) => <article id={slugify(story.category)} class={`story-card story-${index % 3}`}>
+          <a href={`/stories/${story.slug}/`}><div class="story-image"><img src={story.cover} alt="" /></div><p>{story.category} · {story.location}</p><h3>{story.title}</h3><div>{story.summary}</div></a>
+        </article>)}
+      </div>
+    </section>
+  </main> : <main class="empty"><p>Il primo racconto sta arrivando.</p><h1>Le storie iniziano qui.</h1><a href="/admin/">Crea il primo articolo →</a></main>}
+  <footer><div class="footer-brand">The Long Pitch</div><p>Storie di montagna, persone e luoghi.</p><a href="/admin/">Area editoriale</a></footer>
+</Base>

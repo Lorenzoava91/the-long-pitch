@@ -1,0 +1,21 @@
+---
+import Base from "../../layouts/Base.astro";
+import Header from "../../components/Header.astro";
+
+export function getStaticPaths() {
+  const modules = import.meta.glob("../../content/stories/*.md", { eager: true });
+  return Object.entries(modules).filter(([, mod]: [string, any]) => mod.frontmatter.published).map(([path, mod]: [string, any]) => ({
+    params: { slug: path.split("/").pop()!.replace(/\.md$/, "") },
+    props: { frontmatter: mod.frontmatter, Content: mod.Content }
+  }));
+}
+const { frontmatter, Content } = Astro.props;
+---
+<Base title={`${frontmatter.title} — The Long Pitch`} description={frontmatter.summary}>
+  <Header />
+  <main class="article-page">
+    <section class="article-hero"><img src={frontmatter.cover} alt={`Copertina di ${frontmatter.title}`} /><div><p>{frontmatter.category} · {frontmatter.location}</p><h1>{frontmatter.title}</h1></div></section>
+    <article class="article-content"><p class="article-lead">{frontmatter.summary}</p><Content /></article>
+  </main>
+  <footer><div class="footer-brand">The Long Pitch</div><p>{frontmatter.category}</p><a href="/">Torna alle storie ↑</a></footer>
+</Base>
