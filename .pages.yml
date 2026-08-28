@@ -1,6 +1,11 @@
 media:
-  input: public/images/uploads
-  output: /images/uploads
+  - name: story_images
+    label: Fotografie
+    input: public/images/uploads
+    output: /images/uploads
+    extensions: [jpg, jpeg, png, webp]
+    categories: [image]
+    rename: safe
 
 content:
   - name: stories
@@ -41,9 +46,10 @@ content:
         type: image
         required: true
         options:
+          media: story_images
           path: public/images/uploads
           extensions: [jpg, jpeg, png, webp]
-          rename: true
+          rename: safe
       - name: published
         label: Pubblicato
         type: boolean
@@ -53,8 +59,15 @@ content:
         type: rich-text
         required: true
         description: Scrivi il racconto e inserisci liberamente tutte le fotografie che vuoi tra i paragrafi.
+        options:
+          media: story_images
+          path: public/images/uploads
+          extensions: [jpg, jpeg, png, webp]
+          rename: safe
+          switcher: true
 
 settings:
   hide: true
   commit:
     identity: user
+ 
