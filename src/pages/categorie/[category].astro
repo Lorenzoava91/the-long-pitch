@@ -3,10 +3,11 @@ import Base from "../../layouts/Base.astro";
 import Header from "../../components/Header.astro";
 import "../../styles/category.css";
 
-const categories = ["Scalata su Roccia", "Scialpinismo", "Way Up", "Viaggi"];
 const slugify = (value: string) => value.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
 
 export function getStaticPaths() {
+  const categories = ["Scalata su Roccia", "Scialpinismo", "Way Up", "Viaggi"];
+  const slugify = (value: string) => value.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
   return categories.map((category) => ({ params: { category: slugify(category) }, props: { category } }));
 }
 

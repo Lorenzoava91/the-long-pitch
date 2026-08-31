@@ -1,0 +1,56 @@
+backend:
+  name: github
+  repo: Lorenzoava91/the-long-pitch
+  branch: main
+  base_url: https://the-long-pitch.pages.dev
+  auth_endpoint: /api/auth
+
+site_url: https://the-long-pitch.pages.dev
+display_url: https://the-long-pitch.pages.dev
+logo_url: https://the-long-pitch.pages.dev/images/rock-climbing.png
+media_folder: public/images/uploads
+public_folder: /images/uploads
+publish_mode: simple
+
+collections:
+  - name: stories
+    label: Articoli
+    label_singular: Articolo
+    folder: src/content/stories
+    create: true
+    extension: md
+    format: frontmatter
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    summary: "{{title}} — {{category}}"
+    editor:
+      preview: false
+    fields:
+      - { label: Titolo, name: title, widget: string }
+      - label: Categoria
+        name: category
+        widget: select
+        options: [Scalata su Roccia, Scialpinismo, Way Up, Viaggi]
+      - label: Luogo
+        name: location
+        widget: string
+        hint: "Nome leggibile, per esempio: Tsaranoro, Madagascar"
+      - label: Posizione sulla mappa
+        name: map_location
+        widget: map
+        type: Point
+        decimals: 6
+        required: false
+        hint: "Cerca il luogo o clicca direttamente sulla mappa. Puoi poi trascinare il punto."
+      - label: Data
+        name: date
+        widget: datetime
+        date_format: DD/MM/YYYY
+        time_format: false
+        format: YYYY-MM-DD
+      - { label: Introduzione, name: summary, widget: text }
+      - { label: Foto di copertina, name: cover, widget: image }
+      - { label: Pubblicato, name: published, widget: boolean, default: false }
+      - label: Racconto e fotografie
+        name: body
+        widget: markdown
+        hint: "Usa il pulsante immagine per aggiungere fotografie tra i paragrafi."

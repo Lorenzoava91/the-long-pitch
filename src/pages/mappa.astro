@@ -1,0 +1,53 @@
+---
+import Base from "../layouts/Base.astro";
+import Header from "../components/Header.astro";
+import "../styles/map.css";
+
+const modules = import.meta.glob("../content/stories/*.md", { eager: true });
+const stories = Object.entries(modules)
+  .map(([path, mod]: [string, any]) => ({ ...mod.frontmatter, slug: path.split("/").pop()!.replace(/\.md$/, "") }))
+  .filter((story) => story.published && story.map_location)
+  .flatMap((story) => {
+    try {
+      const geometry = typeof story.map_location === "string" ? JSON.parse(story.map_location) : story.map_location;
+      if (geometry?.type !== "Point" || !Array.isArray(geometry.coordinates)) return [];
+      return [{ title: story.title, category: story.category, location: story.location, cover: story.cover, slug: story.slug, longitude: geometry.coordinates[0], latitude: geometry.coordinates[1] }];
+    } catch { return []; }
+  });
+---
+<Base title="Mappa delle storie — The Long Pitch" description="Esplora sulla mappa tutte le avventure di The Long Pitch.">
+  <link slot="head" rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <Header />
+  <main class="map-page">
+    <header class="map-heading"><p>Atlante</p><h1>Tutte le storie,<br />un solo mondo.</h1></header>
+    <div id="stories-map" aria-label="Mappa delle avventure"></div>
+    {stories.length === 0 && <p class="map-empty">Le storie compariranno qui quando assegnerai loro una posizione dall’editor.</p>}
+  </main>
+  <footer><div class="footer-brand">The Long Pitch</div><p>Atlante delle storie</p><a href="/">Torna alla home ↑</a></footer>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" is:inline></script>
+  <script define:vars={{ stories }}>
+    const map = L.map("stories-map", { scrollWheelZoom: false }).setView([35, 12], 2);
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", { maxZoom: 18, attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>' }).addTo(map);
+    const bounds = [];
+    stories.forEach((story) => {
+      const point = [story.latitude, story.longitude];
+      bounds.push(point);
+      const popup = document.createElement("a");
+      popup.className = "map-popup";
+      popup.href = `/stories/${story.slug}/`;
+      const photo = document.createElement("img");
+      photo.src = story.cover;
+      photo.alt = "";
+      const category = document.createElement("span");
+      category.textContent = story.category;
+      const title = document.createElement("strong");
+      title.textContent = story.title;
+      const location = document.createElement("small");
+      location.textContent = story.location || "";
+      popup.append(photo, category, title, location);
+      L.marker(point).addTo(map).bindPopup(popup, { minWidth: 220 });
+    });
+    if (bounds.length === 1) map.setView(bounds[0], 8);
+    if (bounds.length > 1) map.fitBounds(bounds, { padding: [50, 50] });
+  </script>
+</Base>

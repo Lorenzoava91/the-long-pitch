@@ -9,6 +9,7 @@ const { title = "The Long Pitch", description = "Storie di montagna, persone e l
     <meta name="viewport" content="width=device-width" />
     <meta name="description" content={description} />
     <title>{title}</title>
+    <slot name="head" />
   </head>
   <body><slot /></body>
 </html>
