@@ -1,10 +1,10 @@
 ---
-title: Elettroshock - Picco Luigi Amedeo 400m 8a (7a obbl.)
+title: Elettroshock - Picco Luigi Amedeo
 category: Scalata su Roccia
 location: Val Masino, Italia
 map_location: '{"type":"Point","coordinates":[9.683084,46.284828]}'
 date: 2023-08-17
-summary: The Story
+summary: Elettroshock - 400m 8a (7a obbl.) - Picco Luigi Amedeo, Val Torrone, Italy
 cover: /images/uploads/kntu0949.jpg
 published: true
 ---
