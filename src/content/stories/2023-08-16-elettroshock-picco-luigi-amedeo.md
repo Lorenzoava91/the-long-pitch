@@ -6,7 +6,7 @@ map_location: '{"type":"Point","coordinates":[9.683084,46.284828]}'
 date: 2023-08-17
 summary: 400m - 8a (7a obbl.)
 cover: /images/uploads/kntu0949.jpg
-published: false
+published: true
 ---
 ![](/images/uploads/kkvl8098.jpg "At the top of the route, the first signs of the effects of Elettroshock on the poor victim’s mind begin to show.")
 
