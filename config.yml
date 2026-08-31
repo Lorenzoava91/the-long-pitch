@@ -1,0 +1,74 @@
+backend:
+  name: github
+  repo: Lorenzoava91/the-long-pitch
+  branch: main
+  base_url: https://the-long-pitch.pages.dev
+  auth_endpoint: /api/auth
+
+site_url: https://the-long-pitch.pages.dev
+display_url: https://the-long-pitch.pages.dev
+logo_url: https://the-long-pitch.pages.dev/images/rock-climbing.png
+media_folder: public/images/uploads
+public_folder: /images/uploads
+publish_mode: simple
+
+collections:
+  - name: pages
+    label: Site settings
+    files:
+      - name: homepage
+        label: Homepage
+        file: src/data/home.json
+        fields:
+          - { label: Cover image, name: heroImage, widget: image }
+          - { label: Cover image alt text, name: heroAlt, widget: string, hint: "A short visual description for accessibility." }
+          - { label: Small text above the title, name: heroEyebrow, widget: string }
+          - { label: Cover title, name: heroTitle, widget: string }
+          - { label: Button text, name: heroButton, widget: string }
+          - { label: Button link, name: heroLink, widget: string, default: "#latest-stories" }
+          - { label: Introduction label, name: introEyebrow, widget: string }
+          - { label: Introduction text, name: introTitle, widget: text }
+
+  - name: stories
+    label: Stories
+    label_singular: Story
+    folder: src/content/stories
+    create: true
+    extension: md
+    format: frontmatter
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    summary: "{{title}} — {{category}}"
+    editor:
+      preview: false
+    fields:
+      - { label: Title, name: title, widget: string }
+      - label: Categories
+        name: categories
+        widget: select
+        multiple: true
+        min: 1
+        options: [Rock Climbing, Ski Touring, Way Up, Travel]
+      - label: Location
+        name: location
+        widget: string
+        hint: "A readable place name, for example: Tsaranoro, Madagascar"
+      - label: Map location
+        name: map_location
+        widget: map
+        type: Point
+        decimals: 6
+        required: false
+        hint: "Search for a place or click directly on the map. You can then drag the marker."
+      - label: Date
+        name: date
+        widget: datetime
+        date_format: DD/MM/YYYY
+        time_format: false
+        format: YYYY-MM-DD
+      - { label: Introduction, name: summary, widget: text }
+      - { label: Cover image, name: cover, widget: image }
+      - { label: Published, name: published, widget: boolean, default: false }
+      - label: Story and photographs
+        name: body
+        widget: markdown
+        hint: "Use the image button to add photographs between paragraphs."

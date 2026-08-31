@@ -1,0 +1,33 @@
+---
+import Base from "../layouts/Base.astro";
+import Header from "../components/Header.astro";
+import home from "../data/home.json";
+import "../styles/home.css";
+
+const modules = import.meta.glob("../content/stories/*.md", { eager: true });
+const stories = Object.entries(modules)
+  .map(([path, mod]: [string, any]) => ({ ...mod.frontmatter, slug: path.split("/").pop()!.replace(/\.md$/, "") }))
+  .filter((story) => story.published)
+  .sort((a, b) => new Date(b.date).valueOf() - new Date(a.date).valueOf());
+const categoriesOf = (story: any) => Array.isArray(story.categories) ? story.categories : story.category ? [story.category] : [];
+---
+<Base title={`${home.heroTitle} — The Long Pitch`} description={home.introTitle}>
+  <Header />
+  <main>
+    <section class="hero">
+      <img src={home.heroImage} alt={home.heroAlt} />
+      <div class="hero-shade"></div>
+      <div class="hero-copy"><p>{home.heroEyebrow}</p><h1>{home.heroTitle}</h1><a href={home.heroLink}>{home.heroButton} →</a></div>
+    </section>
+    <section class="intro"><p>{home.introEyebrow}</p><h2>{home.introTitle}</h2></section>
+    <section class="stories" id="latest-stories">
+      <div class="section-head"><span>Latest stories</span><p>{stories.length.toString().padStart(2, "0")}</p></div>
+      {stories.length ? <div class="story-grid">
+        {stories.map((story, index) => <article class={`story-card story-${index % 3}`}>
+          <a href={`/stories/${story.slug}/`}><div class="story-image"><img src={story.cover} alt="" /></div><p>{categoriesOf(story).join(" · ")} · {story.location}</p><h3>{story.title}</h3><div>{story.summary}</div></a>
+        </article>)}
+      </div> : <div class="category-empty">The first story is on its way.</div>}
+    </section>
+  </main>
+  <footer><div class="footer-brand">The Long Pitch</div><p>Climbing, people and places.</p><a href="/admin/">Editorial area</a></footer>
+</Base>

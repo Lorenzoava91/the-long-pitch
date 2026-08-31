@@ -1,0 +1,73 @@
+media:
+  - name: story_images
+    label: Fotografie
+    input: public/images/uploads
+    output: /images/uploads
+    extensions: [jpg, jpeg, png, webp]
+    categories: [image]
+    rename: safe
+
+content:
+  - name: stories
+    label: Articoli
+    type: collection
+    path: src/content/stories
+    format: yaml-frontmatter
+    filename: "{year}-{month}-{day}-{primary}.md"
+    view:
+      primary: title
+      fields: [category, location, published]
+      sort: date
+      order: desc
+    fields:
+      - name: title
+        label: Titolo
+        type: string
+        required: true
+      - name: category
+        label: Categoria
+        type: select
+        required: true
+        options:
+          values: ["Scalata su Roccia", "Scialpinismo", "Way Up", "Viaggi"]
+      - name: location
+        label: Luogo
+        type: string
+      - name: date
+        label: Data
+        type: date
+        required: true
+      - name: summary
+        label: Introduzione
+        type: text
+        required: true
+      - name: cover
+        label: Foto di copertina
+        type: image
+        required: true
+        options:
+          media: story_images
+          path: public/images/uploads
+          extensions: [jpg, jpeg, png, webp]
+          rename: safe
+      - name: published
+        label: Pubblicato
+        type: boolean
+        default: false
+      - name: body
+        label: Racconto e fotografie
+        type: rich-text
+        required: true
+        description: Scrivi il racconto e inserisci liberamente tutte le fotografie che vuoi tra i paragrafi.
+        options:
+          media: story_images
+          path: public/images/uploads
+          extensions: [jpg, jpeg, png, webp]
+          rename: safe
+          switcher: true
+
+settings:
+  hide: true
+  commit:
+    identity: user
+ 

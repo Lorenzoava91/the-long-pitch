@@ -1,0 +1,13 @@
+---
+export function getStaticPaths() {
+  return [
+    { params: { category: "scalata-su-roccia" }, props: { target: "rock-climbing" } },
+    { params: { category: "scialpinismo" }, props: { target: "ski-touring" } },
+    { params: { category: "way-up" }, props: { target: "way-up" } },
+    { params: { category: "viaggi" }, props: { target: "travel" } },
+  ];
+}
+
+const { target } = Astro.props;
+return Astro.redirect(`/categories/${target}/`, 301);
+---

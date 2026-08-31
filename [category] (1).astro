@@ -1,0 +1,33 @@
+---
+import Base from "../../layouts/Base.astro";
+import Header from "../../components/Header.astro";
+import "../../styles/category.css";
+
+export function getStaticPaths() {
+  const categories = ["Rock Climbing", "Ski Touring", "Way Up", "Travel"];
+  const slugify = (value: string) => value.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+  return categories.map((category) => ({ params: { category: slugify(category) }, props: { category } }));
+}
+
+const { category } = Astro.props;
+const modules = import.meta.glob("../../content/stories/*.md", { eager: true });
+const stories = Object.entries(modules)
+  .map(([path, mod]: [string, any]) => ({ ...mod.frontmatter, slug: path.split("/").pop()!.replace(/\.md$/, "") }))
+  .filter((story) => story.published && (Array.isArray(story.categories) ? story.categories : story.category ? [story.category] : []).includes(category))
+  .sort((a, b) => new Date(b.date).valueOf() - new Date(a.date).valueOf());
+---
+<Base title={`${category} — The Long Pitch`} description={`${category} stories on The Long Pitch.`}>
+  <Header />
+  <main class="category-page">
+    <header class="category-heading">
+      <div><p class="category-kicker">Archive</p><h1>{category}</h1></div>
+      <p class="category-count">{stories.length.toString().padStart(2, "0")}</p>
+    </header>
+    {stories.length ? <section class="story-grid">
+      {stories.map((story, index) => <article class={`story-card story-${index % 3}`}>
+        <a href={`/stories/${story.slug}/`}><div class="story-image"><img src={story.cover} alt="" /></div><p>{story.location}</p><h3>{story.title}</h3><div>{story.summary}</div></a>
+      </article>)}
+    </section> : <p class="category-empty">No stories have been published in this section yet.</p>}
+  </main>
+  <footer><div class="footer-brand">The Long Pitch</div><p>{category}</p><a href="/">Back to home ↑</a></footer>
+</Base>
