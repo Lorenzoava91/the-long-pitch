@@ -1,38 +1,13 @@
 ---
-import Base from "../../layouts/Base.astro";
-import Header from "../../components/Header.astro";
-import "../../styles/category.css";
-
-const slugify = (value: string) => value.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
-
 export function getStaticPaths() {
-  const categories = ["Scalata su Roccia", "Scialpinismo", "Way Up", "Viaggi"];
-  const slugify = (value: string) => value.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
-  return categories.map((category) => ({ params: { category: slugify(category) }, props: { category } }));
+  return [
+    { params: { category: "scalata-su-roccia" }, props: { target: "rock-climbing" } },
+    { params: { category: "scialpinismo" }, props: { target: "ski-touring" } },
+    { params: { category: "way-up" }, props: { target: "way-up" } },
+    { params: { category: "viaggi" }, props: { target: "travel" } },
+  ];
 }
 
-const { category } = Astro.props;
-const modules = import.meta.glob("../../content/stories/*.md", { eager: true });
-const stories = Object.entries(modules)
-  .map(([path, mod]: [string, any]) => ({ ...mod.frontmatter, slug: path.split("/").pop()!.replace(/\.md$/, "") }))
-  .filter((story) => story.published && story.category === category)
-  .sort((a, b) => new Date(b.date).valueOf() - new Date(a.date).valueOf());
+const { target } = Astro.props;
+return Astro.redirect(`/categories/${target}/`, 301);
 ---
-<Base title={`${category} — The Long Pitch`} description={`Racconti di ${category} su The Long Pitch.`}>
-  <Header />
-  <main class="category-page">
-    <header class="category-heading">
-      <div><p class="category-kicker">Archivio</p><h1>{category}</h1></div>
-      <p class="category-count">{stories.length.toString().padStart(2, "0")}</p>
-    </header>
-    {stories.length ? <section class="story-grid">
-      {stories.map((story, index) => <article class={`story-card story-${index % 3}`}>
-        <a href={`/stories/${story.slug}/`}>
-          <div class="story-image"><img src={story.cover} alt="" /></div>
-          <p>{story.location}</p><h3>{story.title}</h3><div>{story.summary}</div>
-        </a>
-      </article>)}
-    </section> : <p class="category-empty">Nessun racconto pubblicato in questa sezione. Il prossimo arriverà qui.</p>}
-  </main>
-  <footer><div class="footer-brand">The Long Pitch</div><p>{category}</p><a href="/">Torna alla home ↑</a></footer>
-</Base>

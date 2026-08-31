@@ -13,9 +13,25 @@ public_folder: /images/uploads
 publish_mode: simple
 
 collections:
+  - name: pages
+    label: Site settings
+    files:
+      - name: homepage
+        label: Homepage
+        file: src/data/home.json
+        fields:
+          - { label: Cover image, name: heroImage, widget: image }
+          - { label: Cover image alt text, name: heroAlt, widget: string, hint: "A short visual description for accessibility." }
+          - { label: Small text above the title, name: heroEyebrow, widget: string }
+          - { label: Cover title, name: heroTitle, widget: string }
+          - { label: Button text, name: heroButton, widget: string }
+          - { label: Button link, name: heroLink, widget: string, default: "#latest-stories" }
+          - { label: Introduction label, name: introEyebrow, widget: string }
+          - { label: Introduction text, name: introTitle, widget: text }
+
   - name: stories
-    label: Articoli
-    label_singular: Articolo
+    label: Stories
+    label_singular: Story
     folder: src/content/stories
     create: true
     extension: md
@@ -25,32 +41,34 @@ collections:
     editor:
       preview: false
     fields:
-      - { label: Titolo, name: title, widget: string }
-      - label: Categoria
-        name: category
+      - { label: Title, name: title, widget: string }
+      - label: Categories
+        name: categories
         widget: select
-        options: [Scalata su Roccia, Scialpinismo, Way Up, Viaggi]
-      - label: Luogo
+        multiple: true
+        min: 1
+        options: [Rock Climbing, Ski Touring, Way Up, Travel]
+      - label: Location
         name: location
         widget: string
-        hint: "Nome leggibile, per esempio: Tsaranoro, Madagascar"
-      - label: Posizione sulla mappa
+        hint: "A readable place name, for example: Tsaranoro, Madagascar"
+      - label: Map location
         name: map_location
         widget: map
         type: Point
         decimals: 6
         required: false
-        hint: "Cerca il luogo o clicca direttamente sulla mappa. Puoi poi trascinare il punto."
-      - label: Data
+        hint: "Search for a place or click directly on the map. You can then drag the marker."
+      - label: Date
         name: date
         widget: datetime
         date_format: DD/MM/YYYY
         time_format: false
         format: YYYY-MM-DD
-      - { label: Introduzione, name: summary, widget: text }
-      - { label: Foto di copertina, name: cover, widget: image }
-      - { label: Pubblicato, name: published, widget: boolean, default: false }
-      - label: Racconto e fotografie
+      - { label: Introduction, name: summary, widget: text }
+      - { label: Cover image, name: cover, widget: image }
+      - { label: Published, name: published, widget: boolean, default: false }
+      - label: Story and photographs
         name: body
         widget: markdown
-        hint: "Usa il pulsante immagine per aggiungere fotografie tra i paragrafi."
+        hint: "Use the image button to add photographs between paragraphs."
