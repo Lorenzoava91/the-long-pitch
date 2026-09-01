@@ -19,20 +19,14 @@ And so Elettroshock was born.
 
 ![](/images/uploads/lgwz9153.jpg "The nice slab of the third pitch")
 
-
-
 The most physical route of the Masino Trilogy (together with *La Spada nella Roccia* and *Delta Minox), this route* is a wild mixture of sparsely protected granite slabs and cracks that are either well protected or can be protected, but demand a serious amount of power.\
 The very first pitch, supposedly the easiest of the route, is enough to wake you up: 50 metres of 6a+ slab, with a single lonely piton about 10 metres below the belay and virtually no chance of placing anything else. Fortunately, from there on the route gets harder on the arms, but considerably easier on the mind.
 
 ![](/images/uploads/upbr5630.jpg "Giacomo and Roberto climbing the third pitch")
 
-
-
 After this excellent wake-up call for the mind, the route continues for another two pitches of slab before reaching a pronounced overhang split by the faintest hint of a flared crack. It is along this crack that the hardest pitch of the route was drawn, currently graded 8a.
 
 ![](/images/uploads/itmm7557.jpg "Giacomo on the tiny crack offered by the 5th pitch")
-
-
 
 The following pitch starts with some finger-crack climbing, followed by a nice mandatory move on a chickenhead and then a rather imaginative pendulum to reach the good flake-crack system some ten metres to the left.
 
@@ -42,13 +36,9 @@ Another couple of forearm-killing layback pitches finally lead to the famous gig
 
 ![](/images/uploads/jeqi0336.jpg "La Foglia")
 
-
-
 The Leaf is climbed in three magnificent pitches, entirely on trad gear. Try not to worry too much about the occasional creaking and slight movement of the enormous flake as you climb on it. It has been hanging there for quite a few years now and has already seen a fair number of climbers. The chances of it deciding to come down precisely while you are on it are, statistically speaking, pretty low.
 
-![](/images/uploads/mmtc8779.jpg "Almost at the end")
-
-
+![](/images/uploads/img_1309.jpg "Almost at the end")
 
 Unfortunately, once past the flake, the route is far from over. The final pitches are sustained, demanding and not always easy to protect.
 
