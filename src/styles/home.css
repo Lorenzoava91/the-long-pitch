@@ -9,3 +9,16 @@
 .hero-copy > a:hover {
   color: var(--acid);
 }
+
+/* Keep the homepage cover faithful to the original photograph. */
+.hero img {
+  filter: none;
+}
+
+.hero-shade {
+  background: transparent;
+}
+
+.hero-copy {
+  text-shadow: 0 2px 18px rgba(0, 0, 0, .7);
+}

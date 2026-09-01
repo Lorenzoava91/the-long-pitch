@@ -1,0 +1,29 @@
+---
+import Base from "../../layouts/Base.astro";
+import Header from "../../components/Header.astro";
+import "../../styles/category.css";
+
+const modules = import.meta.glob("../../content/narratives/*.md", { eager: true });
+const stories = Object.entries(modules)
+  .map(([path, mod]: [string, any]) => ({ ...mod.frontmatter, slug: path.split("/").pop()!.replace(/\.md$/, "") }))
+  .filter((story) => story.published)
+  .sort((a, b) => new Date(b.date).valueOf() - new Date(a.date).valueOf());
+---
+<Base title="Stories — The Long Pitch" description="Independent stories from mountains, roads and encounters.">
+  <Header />
+  <main class="category-page">
+    <header class="category-heading">
+      <div><p class="category-kicker">Narratives</p><h1>Stories</h1></div>
+      <p class="category-count">{stories.length.toString().padStart(2, "0")}</p>
+    </header>
+    {stories.length ? <section class="story-grid">
+      {stories.map((story, index) => <article class={`story-card story-${index % 3}`}>
+        <a href={`/stories/${story.slug}/`}>
+          <div class="story-image"><img src={story.cover} alt={story.cover_alt || ""} /></div>
+          <p>Story</p><h3>{story.title}</h3><div>{story.summary}</div>
+        </a>
+      </article>)}
+    </section> : <p class="category-empty">No independent stories have been published yet. The first one will appear here.</p>}
+  </main>
+  <footer><div class="footer-brand">The Long Pitch</div><p>Stories</p><a href="/">Back home ↑</a></footer>
+</Base>

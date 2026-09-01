@@ -30,8 +30,8 @@ collections:
           - { label: Introduction text, name: introTitle, widget: text }
 
   - name: stories
-    label: Stories
-    label_singular: Story
+    label: Articles
+    label_singular: Article
     folder: src/content/stories
     create: true
     extension: md
@@ -72,3 +72,32 @@ collections:
         name: body
         widget: markdown
         hint: "Use the image button to add photographs between paragraphs."
+
+  - name: narratives
+    label: Stories
+    label_singular: Story
+    folder: src/content/narratives
+    create: true
+    extension: md
+    format: frontmatter
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    summary: "{{title}}"
+    editor:
+      preview: false
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Subtitle, name: subtitle, widget: string, required: false }
+      - label: Date
+        name: date
+        widget: datetime
+        date_format: DD/MM/YYYY
+        time_format: false
+        format: YYYY-MM-DD
+      - { label: Introduction, name: summary, widget: text }
+      - { label: Cover image, name: cover, widget: image }
+      - { label: Cover image alt text, name: cover_alt, widget: string, hint: "A short visual description for accessibility." }
+      - { label: Published, name: published, widget: boolean, default: false }
+      - label: Story and photographs
+        name: body
+        widget: markdown
+        hint: "Write the story freely and use the image button to add photographs between paragraphs."

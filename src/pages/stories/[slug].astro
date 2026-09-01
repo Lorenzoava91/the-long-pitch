@@ -3,21 +3,25 @@ import Base from "../../layouts/Base.astro";
 import Header from "../../components/Header.astro";
 
 export function getStaticPaths() {
-  const modules = import.meta.glob("../../content/stories/*.md", { eager: true });
-  return Object.entries(modules).filter(([, mod]: [string, any]) => mod.frontmatter.published).map(([path, mod]: [string, any]) => ({
+  const articles = import.meta.glob("../../content/stories/*.md", { eager: true });
+  const narratives = import.meta.glob("../../content/narratives/*.md", { eager: true });
+  return [
+    ...Object.entries(articles).map(([path, mod]: [string, any]) => ({ path, mod, kind: "article" })),
+    ...Object.entries(narratives).map(([path, mod]: [string, any]) => ({ path, mod, kind: "narrative" })),
+  ].filter(({ mod }) => mod.frontmatter.published).map(({ path, mod, kind }) => ({
     params: { slug: path.split("/").pop()!.replace(/\.md$/, "") },
-    props: { frontmatter: mod.frontmatter, Content: mod.Content }
+    props: { frontmatter: mod.frontmatter, Content: mod.Content, kind }
   }));
 }
-const { frontmatter, Content } = Astro.props;
+const { frontmatter, Content, kind } = Astro.props;
 const slugify = (value: string) => value.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
 const categories = Array.isArray(frontmatter.categories) ? frontmatter.categories : frontmatter.category ? [frontmatter.category] : [];
 ---
 <Base title={`${frontmatter.title} — The Long Pitch`} description={frontmatter.summary}>
   <Header />
   <main class="article-page">
-    <section class="article-hero"><img src={frontmatter.cover} alt={`Cover image for ${frontmatter.title}`} /><div><p>{categories.map((category, index) => <><a href={`/categories/${slugify(category)}/`}>{category}</a>{index < categories.length - 1 ? " · " : ""}</>)} · {frontmatter.location}</p><h1>{frontmatter.title}</h1></div></section>
-    <article class="article-content"><p class="article-lead">{frontmatter.summary}</p><Content /></article>
+    <section class="article-hero"><img src={frontmatter.cover} alt={frontmatter.cover_alt || `Cover image for ${frontmatter.title}`} /><div><p>{kind === "narrative" ? "Story" : <>{categories.map((category, index) => <><a href={`/categories/${slugify(category)}/`}>{category}</a>{index < categories.length - 1 ? " · " : ""}</>)}{frontmatter.location ? ` · ${frontmatter.location}` : ""}</>}</p><h1>{frontmatter.title}</h1></div></section>
+    <article class="article-content"><p class="article-lead">{frontmatter.summary}</p>{frontmatter.subtitle && <p><em>{frontmatter.subtitle}</em></p>}<Content /></article>
   </main>
-  <footer><div class="footer-brand">The Long Pitch</div><p>{categories.join(" · ")}</p><a href="/">Back to stories ↑</a></footer>
+  <footer><div class="footer-brand">The Long Pitch</div><p>{kind === "narrative" ? "Stories" : categories.join(" · ")}</p><a href={kind === "narrative" ? "/stories/" : "/"}>{kind === "narrative" ? "All stories" : "Back home"} ↑</a></footer>
 </Base>
