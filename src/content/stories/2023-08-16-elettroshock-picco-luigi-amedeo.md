@@ -2,7 +2,6 @@
 title: Elettroshock - Picco Luigi Amedeo
 categories:
   - Rock Climbing
-  - Travel
 location: Val Masino, Italy
 map_location: '{"type":"Point","coordinates":[9.683084,46.284828]}'
 date: 2023-08-17
