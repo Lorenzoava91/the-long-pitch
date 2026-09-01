@@ -1,0 +1,68 @@
+/* On small screens, preserve the original framing of landscape photographs. */
+@media (max-width: 820px) {
+  .hero {
+    height: auto;
+    min-height: 0;
+    background: var(--ink);
+  }
+
+  .hero img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+
+  .hero-shade {
+    display: none;
+  }
+
+  .hero-copy {
+    position: static;
+    max-width: none;
+    padding: 28px 20px 36px;
+    background: var(--ink);
+  }
+
+  .hero-copy h1 {
+    margin: 12px 0 24px;
+    font-size: clamp(48px, 16vw, 78px);
+  }
+
+  .story-image,
+  .story-card:nth-child(3n+1) .story-image {
+    height: auto;
+    background: transparent;
+  }
+
+  .story-image img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+
+  .article-hero {
+    height: auto;
+    min-height: 0;
+    background: var(--ink);
+  }
+
+  .article-hero::after {
+    display: none;
+  }
+
+  .article-hero > img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+
+  .article-hero > div {
+    position: static;
+    padding: 28px 20px 36px;
+  }
+
+  .article-hero h1 {
+    margin: 12px 0 0;
+    font-size: clamp(45px, 15vw, 72px);
+  }
+}
