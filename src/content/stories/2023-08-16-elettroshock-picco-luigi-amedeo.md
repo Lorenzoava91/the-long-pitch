@@ -22,7 +22,7 @@ And so Elettroshock was born.
 The most physical route of the Masino Trilogy (together with *La Spada nella Roccia* and *Delta Minox), this route* is a wild mixture of sparsely protected granite slabs and cracks that are either well protected or can be protected, but demand a serious amount of power.\
 The very first pitch, supposedly the easiest of the route, is enough to wake you up: 50 metres of 6a+ slab, with a single lonely piton about 10 metres below the belay and virtually no chance of placing anything else. Fortunately, from there on the route gets harder on the arms, but considerably easier on the mind.
 
-![](/images/uploads/upbr5630.jpg "Giacomo and Roberto climbing the third pitch")
+![](/images/uploads/upbr5630.jpg)
 
 After this excellent wake-up call for the mind, the route continues for another two pitches of slab before reaching a pronounced overhang split by the faintest hint of a flared crack. It is along this crack that the hardest pitch of the route was drawn, currently graded 8a.
 
