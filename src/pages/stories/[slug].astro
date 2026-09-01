@@ -17,7 +17,7 @@ const { frontmatter, Content, kind } = Astro.props;
 const slugify = (value: string) => value.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
 const categories = Array.isArray(frontmatter.categories) ? frontmatter.categories : frontmatter.category ? [frontmatter.category] : [];
 ---
-<Base title={`${frontmatter.title} — The Long Pitch`} description={frontmatter.summary}>
+<Base title={`${frontmatter.title} — The Long Pitch`} description={frontmatter.summary} image={frontmatter.cover}>
   <Header />
   <main class="article-page">
     <section class="article-hero"><img src={frontmatter.cover} alt={frontmatter.cover_alt || `Cover image for ${frontmatter.title}`} /><div><p>{kind === "narrative" ? "Story" : <>{categories.map((category, index) => <><a href={`/categories/${slugify(category)}/`}>{category}</a>{index < categories.length - 1 ? " · " : ""}</>)}{frontmatter.location ? ` · ${frontmatter.location}` : ""}</>}</p><h1>{frontmatter.title}</h1></div></section>

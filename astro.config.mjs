@@ -1,4 +1,9 @@
 import { defineConfig } from "astro/config";
 import mdx from "@astrojs/mdx";
+import sitemap from "@astrojs/sitemap";
 
-export default defineConfig({ integrations: [mdx()], output: "static" });
+export default defineConfig({
+  site: "https://thelongpitch.com",
+  integrations: [mdx(), sitemap()],
+  output: "static"
+});

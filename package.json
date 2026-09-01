@@ -3,6 +3,14 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "scripts": { "dev": "astro dev", "build": "astro build", "preview": "astro preview" },
-  "dependencies": { "@astrojs/mdx": "^4.3.6", "astro": "^5.13.5" }
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "@astrojs/mdx": "^4.3.6",
+    "@astrojs/sitemap": "^3.7.4",
+    "astro": "^5.13.5"
+  }
 }

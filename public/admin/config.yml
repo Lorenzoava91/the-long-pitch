@@ -2,12 +2,12 @@ backend:
   name: github
   repo: Lorenzoava91/the-long-pitch
   branch: main
-  base_url: https://the-long-pitch.pages.dev
+  base_url: https://thelongpitch.com
   auth_endpoint: /api/auth
 
-site_url: https://the-long-pitch.pages.dev
-display_url: https://the-long-pitch.pages.dev
-logo_url: https://the-long-pitch.pages.dev/images/rock-climbing.png
+site_url: https://thelongpitch.com
+display_url: https://thelongpitch.com
+logo_url: https://thelongpitch.com/images/rock-climbing.png
 media_folder: public/images/uploads
 public_folder: /images/uploads
 publish_mode: simple

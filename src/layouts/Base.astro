@@ -1,7 +1,13 @@
 ---
 import "../styles/global.css";
 import "../styles/responsive-images.css";
-const { title = "The Long Pitch", description = "Stories of climbing, people and places." } = Astro.props;
+const {
+  title = "The Long Pitch",
+  description = "Stories of climbing, people and places.",
+  image = "/images/uploads/kntu0949.jpg"
+} = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site ?? Astro.url.origin);
+const socialImage = new URL(image, Astro.site ?? Astro.url.origin);
 ---
 <!doctype html>
 <html lang="en">
@@ -9,6 +15,14 @@ const { title = "The Long Pitch", description = "Stories of climbing, people and
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="The Long Pitch" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={socialImage} />
+    <meta name="twitter:card" content="summary_large_image" />
     <title>{title}</title>
     <slot name="head" />
   </head>

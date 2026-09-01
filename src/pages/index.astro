@@ -11,7 +11,7 @@ const stories = Object.entries(modules)
   .sort((a, b) => new Date(b.date).valueOf() - new Date(a.date).valueOf());
 const categoriesOf = (story: any) => Array.isArray(story.categories) ? story.categories : story.category ? [story.category] : [];
 ---
-<Base title={`${home.heroTitle} — The Long Pitch`} description={home.introTitle}>
+<Base title={`${home.heroTitle} — The Long Pitch`} description={home.introTitle} image={home.heroImage}>
   <Header />
   <main>
     <section class="hero">
