@@ -7,6 +7,13 @@
     <title>Editorial area — The Long Pitch</title>
   </head>
   <body>
-    <script src="https://unpkg.com/decap-cms@^3.8.3/dist/decap-cms.js" is:inline></script>
+    <script is:inline>window.CMS_MANUAL_INIT = true;</script>
+    <script src="https://unpkg.com/decap-cms@3.16.2/dist/decap-cms.js" is:inline></script>
+    <script>
+      import { enableHeicUploads } from '../../scripts/heic-upload';
+      enableHeicUploads();
+      // Install the upload adapter before Decap renders any file inputs.
+      window.CMS.init();
+    </script>
   </body>
 </html>
