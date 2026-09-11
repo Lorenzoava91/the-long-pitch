@@ -15,10 +15,6 @@ What really stayed with me was how it ended. The cracks seemed to stop abruptly 
 
 ![](/images/uploads/rggm5196.jpg "The Approach")
 
-
-
-
-
 Now, here we are. It’s already mid-August, and the glacier is showing the scars of the relentless summer heat. The approach proves more complicated than expected, but we still reach the foot of the route in good time. With no time to waste (there’s a cable car to catch on the way down) we head up the uninviting gully leading to the first belay.
 
 ![](/images/uploads/img_6383.jpg "First Pitch")
@@ -39,7 +35,7 @@ The next pitch starts up a system of parallel cracks before joining a wide crack
 
 The line leads straight towards an opening beneath the roof. Up close, it turns out to be the entrance to a rather tight tunnel, which provides a passage through to the summit ridge. At last, the secret of the teleportation trick is revealed, and the route’s name suddenly makes sense!
 
-![](/images/uploads/img_6398.jpg "The ridge")
+![](/images/uploads/img_6387.jpg "The ridge")
 
 The final two pitches along the ridge are among the finest granite pitches I’ve climbed in the Alps: breathtaking views and rock sculpted into lunar pockets and chicken heads. The sort of climbing you wish would never end.
 
@@ -48,8 +44,6 @@ The final two pitches along the ridge are among the finest granite pitches I’v
 Once on top, though, we notice huge dark clouds rolling in from the north. Unfortunately, thunderstorms were a possibility in the forecast. A swift series of abseils takes us back to the foot of the wall; we strap on our crampons and hurry towards the cable car.
 
 We return to the warmth of the valley, thoroughly satisfied. From there, we’ll go our separate ways: me to Champoluc, Giacomo to Milan. Ten years on, that little mystery on Pic Adolphe Rey finally has an answer.
-
-
 
 Pitch Summary: 6a+, 6b, 6c+/7a, 6c+/7a, 6b+, 5c
 
