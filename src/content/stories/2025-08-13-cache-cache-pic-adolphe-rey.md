@@ -17,7 +17,7 @@ What really stayed with me was how it ended. The cracks seemed to stop abruptly 
 
 Now, here we are. It’s already mid-August, and the glacier is showing the scars of the relentless summer heat. The approach proves more complicated than expected, but we still reach the foot of the route in good time. With no time to waste (there’s a cable car to catch on the way down) we head up the uninviting gully leading to the first belay.
 
-![](/images/uploads/img_6383.jpg "First Pitch")
+![](/images/uploads/img_6381.jpg "First Pitch")
 
 The first pitch is fairly long, with just one bolt to point us in the right direction. Staying on route takes a little care and some mountain intuition. A relatively straightforward second pitch, graded 6b, brings us below the third: a magnificent granite slab, given 7a by some and 6c+ by others.
 
