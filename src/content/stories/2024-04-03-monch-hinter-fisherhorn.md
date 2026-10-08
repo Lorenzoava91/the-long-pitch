@@ -1,5 +1,5 @@
 ---
-title: Monch & Hinter Fisherhorn
+title: Monch & Hinter Fischerhorn
 categories:
   - Ski Touring
 location: Berner Oberland
